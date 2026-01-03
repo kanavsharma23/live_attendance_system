@@ -1,0 +1,30 @@
+{
+  // Enable error diagnostics
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.suggest.autoImports": true,
+  // Error display settings
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  // Enable underlines for errors, warnings, and info
+  "editor.renderValidationDecorations": "on",
+  "editor.renderLineHighlight": "all",
+  // TypeScript/JavaScript diagnostics
+  "typescript.validate.enable": true,
+  "javascript.validate.enable": true,
+  // Show errors in problems panel
+  "problems.showCurrentInStatus": true,
+  // Enable squiggly underlines
+  "editor.semanticHighlighting.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
+  // Diagnostic settings
+  "typescript.disableAutomaticTypeAcquisition": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  // Enable real-time error checking
+  "typescript.tsserver.watchOptions": {
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriority"
+  }
+}
