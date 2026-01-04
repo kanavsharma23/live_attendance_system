@@ -10,7 +10,7 @@ dotenv.config();
 
 const router = Router();
 
-let activeSession: { classId: string, startedAt: Date, attendance: Record<string, string> } | null = null;
+export let activeSession: { classId: string, startedAt: Date, attendance: Record<string, string>, teacherId: string } | null = null;
 
 router.post("/auth/signup", async (req, res) => {
   const { success, data } = SignupSchema.safeParse(req.body);
@@ -286,7 +286,7 @@ router.post("/attendance/start", authMiddleware, teacherRoleMiddleware, async (r
     _id: data.classId
   });
 
-  if (!classDb || classDb.teacherId !== req.userId) {
+  if (!classDb || !classDb.teacherId || classDb.teacherId.toString() !== req.userId?.toString()) {
     res.status(401).json({
       "status": false,
       "error": "No match"
@@ -297,7 +297,8 @@ router.post("/attendance/start", authMiddleware, teacherRoleMiddleware, async (r
   activeSession = {
     classId: classDb._id.toString(),
     startedAt: new Date(),
-    attendance: {}
+    attendance: {},
+    teacherId: classDb.teacherId.toString()
   }
   res.json({
     "success": true,
